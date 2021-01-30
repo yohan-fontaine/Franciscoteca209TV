@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "560470020594",
+    "firebase_url": "https://franciscoteca-3a805.firebaseio.com",
+    "project_id": "franciscoteca-3a805",
+    "storage_bucket": "franciscoteca-3a805.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560470020594:android:c62f248b0e48b474b55b6b",
+        "android_client_info": {
+          "package_name": "yohan.fontaine.franciscoteca209tv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560470020594-oongvcpbm4pdnkjhepghn7hpuhpbtkho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYDL7ONGK9iZHd0eu_pI0fTkHJ0_YwrnY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560470020594-oongvcpbm4pdnkjhepghn7hpuhpbtkho.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
