@@ -9,8 +9,7 @@
     android:paddingBottom="5dp"
     android:paddingTop="5dp"
     android:orientation="vertical">
-
-
+    
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="120dp"
