@@ -15,7 +15,7 @@ import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.Toast;
+
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -122,8 +122,9 @@ public class MainActivity extends AppCompatActivity {
     AdapterView.OnItemClickListener onItemClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Uri uri = Uri.parse(uploadPDFList.get(position).getPdfUrl()); // missing 'http://' will cause crashed
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            String url = uploadPDFList.get(position).getPdfUrl(); // missing 'http://' will cause crashed
+            Intent intent = new Intent(getApplicationContext(), pdfview.class);
+            intent.putExtra("url",url);
             startActivity(intent);
         }
     };

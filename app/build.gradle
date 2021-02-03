@@ -29,6 +29,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     //implementation picasso library
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
     implementation 'com.google.firebase:firebase-auth:20.0.1'
     implementation 'com.google.firebase:firebase-storage:19.2.0'
     implementation 'com.google.firebase:firebase-database:19.5.1'
