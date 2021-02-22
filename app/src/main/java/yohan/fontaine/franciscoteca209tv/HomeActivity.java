@@ -1,7 +1,9 @@
 package yohan.fontaine.franciscoteca209tv;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,8 +15,10 @@ import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +30,7 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
+    private ProgressDialog progressDialog;
     private ViewStub stubGrid;
     private ViewStub stubList;
     private ListView listView;
@@ -33,6 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     private ListViewAdapter listViewAdapter;
     private GridViewAdapter gridViewAdapter;
     private List<UploadPDF> uploadPDFList;
+    private BottomNavigationView bottomNavigationView;
     private int currentVueMode = 0;
 
     static final int VIEW_MODE_LISTVIEW = 0;
@@ -52,7 +58,17 @@ public class HomeActivity extends AppCompatActivity {
         gridView = findViewById(R.id.gridView);
         listView = findViewById(R.id.listView);
 
-        getUploadPDFList();
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.action_library);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Cargando...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+        progressDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        getBooksList();
+
 
         //Get current view mode in share references
         SharedPreferences sharedPreferences = getSharedPreferences("ViewMode", MODE_PRIVATE);
@@ -61,6 +77,9 @@ public class HomeActivity extends AppCompatActivity {
         //Register item click
         listView.setOnItemClickListener(onItemClick);
         gridView.setOnItemClickListener(onItemClick);
+
+        //Bottom navigation item click
+        bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelected);
     }
 
     private void switchView() {
@@ -89,18 +108,43 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    private List<UploadPDF> getUploadPDFList() {
+    private List<UploadPDF> getBooksList() {
         uploadPDFList = new ArrayList<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("uploads");
+        DatabaseReference myRef = database.getReference("books");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
+                    UploadPDF uploadPDF = postSnapshot.getValue(UploadPDF.class);
+                    uploadPDFList.add(uploadPDF);
+                }
+                progressDialog.dismiss();
+                switchView();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+        return uploadPDFList;
+    }
+
+    private List<UploadPDF> getTextbooksList() {
+        uploadPDFList = new ArrayList<>();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("textbooks");
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
-                    UploadPDF uploadPDF = postSnapshot.getValue(UploadPDF.class);
-                    uploadPDFList.add(uploadPDF);
+                    UploadPDF textbook = postSnapshot.getValue(UploadPDF.class);
+                    uploadPDFList.add(textbook);
                 }
 
                 switchView();
@@ -122,6 +166,27 @@ public class HomeActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), pdfview.class);
             intent.putExtra("url",url);
             startActivity(intent);
+        }
+    };
+
+    BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelected = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+            int id = item.getItemId();
+
+            switch (id) {
+                case R.id.action_text:
+                    getTextbooksList();
+                    return true;
+                case R.id.action_library:
+                    getBooksList();
+                    return true;
+                case R.id.action_audio:
+                    Toast.makeText(getApplicationContext(),"No disponible por el momento", Toast.LENGTH_SHORT).show();
+                    return false;
+            }
+            return false;
         }
     };
 

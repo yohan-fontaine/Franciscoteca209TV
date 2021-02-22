@@ -10,6 +10,21 @@
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style=""
+            android:layout_width="145dp"
+            android:layout_height="137dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginBottom="150dp" />
+    </com.github.barteksc.pdfviewer.PDFView>
 
 </LinearLayout>

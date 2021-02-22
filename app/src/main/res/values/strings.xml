@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Franciscoteca</string>
+    <string name="app_name">Franciscoteca209TV</string>
+    <!-- BOTTOM NAVIGATION VIEW -->
+    <string name="bottom_navigation_menu_text">Libros de texto</string>
+    <string name="bottom_navigation_menu_library">Biblioteca</string>
+    <string name="bottom_navigation_menu_audio">Audiolibros</string>
+    <string name="Description_application">Franciscoteca Escuela Secundaria Gral N°209 "Francisco Villa" Turno Vespertino CCT:E09DES4209Y</string>
 </resources>

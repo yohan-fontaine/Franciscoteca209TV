@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_text"
+        android:enabled="true"
+        android:icon="@drawable/ic_auto_stories_24px"
+        android:title="@string/bottom_navigation_menu_text"/>
+    <item
+        android:id="@+id/action_library"
+        android:enabled="true"
+        android:icon="@drawable/ic_library_books_24px"
+        android:title="@string/bottom_navigation_menu_library"/>
+    <item
+        android:id="@+id/action_audio"
+        android:enabled="true"
+        android:icon="@drawable/ic_headphones_24px"
+        android:title="@string/bottom_navigation_menu_audio"/>
+</menu>

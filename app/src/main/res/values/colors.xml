@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- APP BASE -->
     <color name="colorPrimary">#03A9F4</color>
     <color name="colorPrimaryDark">#0288D1</color>
-    <color name="colorAccent">#FF40B1</color>
+    <color name="colorAccent">#BDBDBD</color>
+    <color name="colorAccentDark">#757575</color>
+    <!-- BACKGROUND -->
+    <color name="background_light">#fafafa</color>
+    <color name="background_gray">#eeeeee</color>
 </resources>
