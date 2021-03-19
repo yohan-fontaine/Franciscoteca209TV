@@ -7,10 +7,10 @@ android {
 
     defaultConfig {
         applicationId "yohan.fontaine.franciscoteca209tv"
-        minSdkVersion 24
+        minSdkVersion 21
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

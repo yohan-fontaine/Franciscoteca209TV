@@ -81,7 +81,7 @@ public class pdfview extends AppCompatActivity {
                     // spacing between pages in dp. To define spacing color, set view background
                     .spacing(0)
                     .autoSpacing(true) // add dynamic spacing to fit each page on its own on the screen
-                    .fitEachPage(false) // fit each page to the view, else smaller pages are scaled relative to largest page.
+                    .fitEachPage(true) // fit each page to the view, else smaller pages are scaled relative to largest page.
                     .pageSnap(true) // snap pages to screen boundaries
                     .pageFling(true) // make a fling change only a single page like ViewPager
                     .nightMode(false) // toggle night mode
